@@ -1,122 +1,87 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import TopBar from './components/TopBar';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import FloatingButtons from './components/FloatingButtons';
 
-function App() {
-  const [count, setCount] = useState(0)
+// Pages
+import Home from './pages/Home';
+import Services from './pages/Services';
+import Fleet from './pages/Fleet';
+import Routes from './pages/Routes';
+import About from './pages/About';
+import Contact from './pages/Contact';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('home');
+
+  // Handle why-us or anchor jumps
+  const handleTabChange = (tabId) => {
+    if (tabId === 'why-us') {
+      setActiveTab('home');
+      setTimeout(() => {
+        const el = document.getElementById('why-us');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      return;
+    }
+
+    setActiveTab(tabId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="min-h-screen flex flex-col bg-[#F7F9FC] text-slate-800 selection:bg-[#F5B400] selection:text-[#061A3A]">
+      {/* Top Header Bar */}
+      <TopBar />
 
-      <div className="ticks"></div>
+      {/* Main Sticky Navbar */}
+      <Navbar activeTab={activeTab} setActiveTab={handleTabChange} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      {/* Dynamic Page Rendering */}
+      <main className="flex-grow">
+        {activeTab === 'home' && (
+          <Home 
+            setActiveTab={handleTabChange}
+            onBookRoute={() => {
+              const el = document.getElementById('book-taxi');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            onSelectVehicle={() => {
+              const el = document.getElementById('book-taxi');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+          />
+        )}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        {activeTab === 'services' && (
+          <Services setActiveTab={handleTabChange} />
+        )}
+
+        {activeTab === 'fleet' && (
+          <Fleet setActiveTab={handleTabChange} />
+        )}
+
+        {activeTab === 'routes' && (
+          <Routes setActiveTab={handleTabChange} />
+        )}
+
+        {activeTab === 'about' && (
+          <About setActiveTab={handleTabChange} />
+        )}
+
+        {activeTab === 'contact' && (
+          <Contact />
+        )}
+      </main>
+
+      {/* Footer */}
+      <Footer setActiveTab={handleTabChange} />
+
+      {/* Persistent WhatsApp & Call Floating Buttons */}
+      <FloatingButtons />
+    </div>
+  );
 }
-
-export default App
