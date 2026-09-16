@@ -12,7 +12,7 @@ export default function Hero({ onBookClick, onExploreFleet }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
           {/* Left Column: Value Prop, Headline, CTAs */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div className="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-1">
             
             {/* Top Pill / Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-[#F5B400]/40 backdrop-blur-sm text-xs sm:text-sm font-medium text-amber-300">
@@ -119,80 +119,20 @@ export default function Hero({ onBookClick, onExploreFleet }) {
           </div>
 
           {/* Right Column: Hero Graphic & Visual Identity */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
+          <div className="lg:col-span-5 flex flex-col items-center justify-center relative order-1 lg:order-2">
             
             {/* Visual Card Container */}
-            <div className="relative w-full max-w-md lg:max-w-none">
+            <div className="relative w-full max-w-md lg:max-w-lg group">
               
               {/* Gold Ring Halo Effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#F5B400]/20 to-transparent rounded-3xl filter blur-xl transform scale-95" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#F5B400]/30 to-transparent rounded-3xl filter blur-2xl transform scale-100 opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="relative rounded-3xl bg-gradient-to-b from-white/10 to-[#092B5C]/60 border border-white/15 p-6 backdrop-blur-md shadow-2xl space-y-5">
-                
-                {/* Header Tag with 24x7 */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <div>
-                    <span className="text-[11px] uppercase tracking-wider text-[#FFC21A] font-bold">
-                      Rajkot Fleet Special
-                    </span>
-                    <h3 className="text-lg font-bold text-white">
-                      Dzire & Ertiga Ready For Departure
-                    </h3>
-                  </div>
-                  <div className="bg-[#F5B400] text-[#061A3A] text-xs font-black px-2.5 py-1 rounded-full flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    <span>24x7</span>
-                  </div>
-                </div>
-
-                {/* Cars Image from Poster */}
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#061A3A]/80 to-[#041026] p-2 border border-white/10">
-                  <img 
-                    src="/cars_hero.png" 
-                    alt="Yatharth Swift Dzire and Maruti Ertiga Cabs" 
-                    className="w-full h-auto object-contain transform hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute bottom-2 left-3 right-3 flex justify-between text-[11px] font-bold text-white bg-[#061A3A]/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/10">
-                    <span className="text-[#FFC21A]">Dzire: ₹12/km*</span>
-                    <span className="text-[#FFC21A]">Ertiga: ₹14/km*</span>
-                  </div>
-                </div>
-
-                {/* Quick Route Teaser Pills */}
-                <div className="space-y-2">
-                  <span className="text-xs text-slate-300 font-medium">Daily Outstation Trips from Rajkot:</span>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="bg-white/5 border border-white/10 p-2 rounded-lg flex items-center justify-between">
-                      <span className="text-slate-200">Rajkot ⇄ Somnath</span>
-                      <span className="text-amber-400 font-bold">4.0 hrs</span>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 p-2 rounded-lg flex items-center justify-between">
-                      <span className="text-slate-200">Rajkot ⇄ Dwarka</span>
-                      <span className="text-amber-400 font-bold">4.5 hrs</span>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 p-2 rounded-lg flex items-center justify-between">
-                      <span className="text-slate-200">Rajkot ⇄ Ahmedabad</span>
-                      <span className="text-amber-400 font-bold">3.5 hrs</span>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 p-2 rounded-lg flex items-center justify-between">
-                      <span className="text-slate-200">Rajkot ⇄ Diu Beach</span>
-                      <span className="text-amber-400 font-bold">5.0 hrs</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hotline Bar */}
-                <div className="bg-[#F5B400] text-[#061A3A] rounded-xl p-3 flex items-center justify-between font-bold">
-                  <div className="flex items-center gap-2">
-                    <Phone className="w-4 h-4 fill-[#061A3A]" />
-                    <span className="text-xs uppercase tracking-wide">Call Helpline:</span>
-                  </div>
-                  <a href="tel:7487887777" className="text-base font-extrabold hover:underline">
-                    7487887777
-                  </a>
-                </div>
-
-              </div>
+              {/* Trips Plan Image replacing the previous card */}
+              <img 
+                src="/trips_plan.jpg" 
+                alt="Yatharth Cab Service Trips Plan" 
+                className="relative z-10 w-full h-auto object-contain rounded-2xl shadow-2xl border border-white/20 transform group-hover:scale-[1.02] transition-transform duration-500"
+              />
             </div>
 
           </div>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, Menu, X, MessageCircle, ArrowRight, Shield } from 'lucide-react';
+import TripsPlanModal from './TripsPlanModal';
 
 export default function Navbar({ activeTab, setActiveTab }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isTripsPlanModalOpen, setIsTripsPlanModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,6 +85,13 @@ export default function Navbar({ activeTab, setActiveTab }) {
 
         {/* Action CTAs */}
         <div className="hidden sm:flex items-center gap-3">
+          <button
+            onClick={() => setIsTripsPlanModalOpen(true)}
+            className="bg-[#F5B400] text-[#061A3A] font-bold px-4 py-2.5 rounded-xl shadow-md text-sm hover:shadow-lg transition-transform hover:-translate-y-0.5"
+          >
+            Trips Plan
+          </button>
+
           <a
             href="https://wa.me/917487887777?text=Hello%20Yatharth%20Cab%20Service%20Rajkot,%20I%20want%20to%20book%20a%20taxi."
             target="_blank"
@@ -125,6 +134,15 @@ export default function Navbar({ activeTab, setActiveTab }) {
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#061A3A] border-t border-white/10 px-4 pt-3 pb-6 space-y-2 animate-in slide-in-from-top duration-200">
+          <button
+            onClick={() => {
+              setIsTripsPlanModalOpen(true);
+              setMobileMenuOpen(false);
+            }}
+            className="w-full text-center px-4 py-3 mb-3 rounded-lg text-sm font-bold bg-[#F5B400] text-[#061A3A] shadow-md animate-pulse"
+          >
+            View Special Trips Plan
+          </button>
           <div className="grid grid-cols-2 gap-2 pb-3 mb-2 border-b border-white/10">
             <a
               href="tel:7487887777"
@@ -163,6 +181,10 @@ export default function Navbar({ activeTab, setActiveTab }) {
           </div>
         </div>
       )}
+      <TripsPlanModal 
+        isOpen={isTripsPlanModalOpen} 
+        onClose={() => setIsTripsPlanModalOpen(false)} 
+      />
     </header>
   );
 }
